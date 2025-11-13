@@ -7,11 +7,13 @@
 mixin Payable {
   double calculateSalary(double baseSalary, double bonus) {
     // TODO: Calculate total salary (base + bonus)
-    return 0.0; // Placeholder - replace with actual implementation
+    double total= baseSalary+bonus;
+    return total; // Placeholder - replace with actual implementation
   }
-  
+
   void processPayment(double amount) {
     // TODO: Process payment
+    print("Processing payment....");
     // Add your implementation here
   }
 }
@@ -21,7 +23,7 @@ mixin Payable {
 mixin Reportable {
   String generateReport(String employeeName, String department) {
     // TODO: Generate report
-    return ""; // Placeholder - replace with actual implementation
+    return "Generating report..."; // Placeholder - replace with actual implementation
   }
 }
 
@@ -33,12 +35,12 @@ abstract class Employee {
   String name;
   String id;
   String department;
-  
+
   Employee(this.name, this.id, this.department);
-  
+
   String getJobTitle();
   double getBaseSalary();
-  
+
   void displayInfo() {
     print("$name (ID: $id, Department: $department)");
     print("Job Title: ${getJobTitle()}");
@@ -52,25 +54,26 @@ abstract class Employee {
 //      - Override required methods
 class Manager extends Employee with Payable, Reportable {
   int teamSize;
-  
+
   Manager(String name, String id, String department, this.teamSize) : super(name, id, department);
-  
+
   @override
   String getJobTitle() {
     // TODO: Return manager job title
-    return ""; // Placeholder - replace with actual implementation
+    return "Manager"; // Placeholder - replace with actual implementation
   }
-  
+
   @override
   double getBaseSalary() {
     // TODO: Return manager base salary
-    return 0.0; // Placeholder - replace with actual implementation
+    return 80000.0; // Placeholder - replace with actual implementation
   }
-  
+
   @override
   void displayInfo() {
     // TODO: Override to show manager-specific info
     // Add your implementation here
+    print("${name} ( ID: ${id}, Designation: Manager, Department: ${department} )");
   }
 }
 
@@ -79,25 +82,26 @@ class Manager extends Employee with Payable, Reportable {
 //      - Override required methods
 class Developer extends Employee with Payable {
   String programmingLanguage;
-  
+
   Developer(String name, String id, String department, this.programmingLanguage) : super(name, id, department);
-  
+
   @override
   String getJobTitle() {
     // TODO: Return developer job title
-    return ""; // Placeholder - replace with actual implementation
+    return "developer"; // Placeholder - replace with actual implementation
   }
-  
+
   @override
   double getBaseSalary() {
     // TODO: Return developer base salary
-    return 0.0; // Placeholder - replace with actual implementation
+    return 60000.0; // Placeholder - replace with actual implementation
   }
-  
+
   @override
   void displayInfo() {
     // TODO: Override to show developer-specific info
     // Add your implementation here
+    print("${name} ( ID: ${id}, Designation: Developer, Department: ${department} )");
   }
 }
 
@@ -107,11 +111,22 @@ void main() {
   //    - Payment processing
   //    - Report generation (for managers)
   //    - Display all employee information
-  
   // TODO: Create employees
-  
+  final asif = Manager("asif islam", "1206", "Marketing", 3);
+  final natasa = Developer("natasa", "1325", "IT", "Java");
+
   // TODO: Demonstrate salary calculation with bonus
-  
+  final bonus = 10000.0;
+
+  final salary1= asif.getBaseSalary();
+  final calculated1 = salary1 + bonus;
+  print("Salary of Manager Including Bonus: ${calculated1}");
+
+  final salary2= natasa.getBaseSalary();
+  final calculated2 = salary2 + bonus;
+  print("Salary of Developer Including Bonus: ${calculated2}");
+
   // TODO: Display employee information
-  
+  asif.displayInfo();
+ natasa.displayInfo();
 }
